@@ -1,0 +1,143 @@
+.rating_container {
+    flex: 1;
+    overflow-y: hidden;
+    flex-direction: column;
+    .rating_header {
+        display: flex;
+        background-color: #fff;
+        padding: .8rem .5rem;
+        margin-bottom: 0.5rem;
+        .rating_header_left {
+            flex: 3;
+            text-align: center;
+            p:nth-child(1) {
+                font-size: 1.2rem;
+                color: #f60;
+            }
+            p:nth-child(2) {
+                font-size: 0.65rem;
+                color: #666;
+                margin-bottom: .1rem;
+            }
+            p:nth-child(3) {
+                font-size: 0.4rem;
+                color: #999;
+            }
+        }
+        .rating_header_right {
+            flex: 4;
+            p {
+                font-size: .65rem;
+                line-height: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                span {
+                    color: #666;
+                    margin-right: .5rem;
+                }
+            }
+            .rating_container {}
+        }
+    }
+    .tag_list_ul {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fff;
+        padding: .5rem;
+        li {
+            font-size: 0.6rem;
+            color: #6d7885;
+            padding: .3rem .3rem;
+            background-color: #ebf5ff;
+            border-radius: 0.2rem;
+            border: 1px;
+            margin: 0 .4rem .2rem 0;
+        }
+        .tagActivity {
+            background-color: #3190e8;
+            color: #fff;
+        }
+        .unsatisfied {
+            background-color: #f5f5f5;
+            color: #aaa;
+        }
+    }
+    .rating_list_ul {
+        background-color: #fff;
+        padding: 0 .5rem;
+        .rating_list_li {
+            border-top: 1px solid #f1f1f1;
+            display: -webkit-flex;
+            display: flex;
+            padding: .6rem 0;
+        }
+        .user_avatar {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 0.025rem;
+            border-radius: 50%;
+            margin-right: .8rem;
+        }
+        .rating_list_details {
+            flex: 1;
+            header {
+                display: flex;
+                flex: 1;
+                justify-content: space-between;
+                margin-bottom: .3rem;
+            }
+            .food_img_ul {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: .4rem;
+                img {
+                    width: 3rem;
+                    height: 3rem;
+                    margin-right: .4rem;
+                    display: block;
+                }
+            }
+            .username_star {
+                font-size: 0.55rem;
+                color: #666;
+                .username {
+                    color: #666;
+                    margin-bottom: .2rem;
+                }
+                .star_desc {
+                    display: flex;
+                    align-items: center;
+                }
+                .rated_at {
+                    font-size: 0.4rem;
+                    color: #999;
+                }
+            }
+        }
+    }
+}
+
+.anticon svg {
+    width: 10px;
+}
+
+.ant-rate {
+    line-height: .05rem;
+}
+
+.ant-rate-star {
+    margin-right: 0 !important;
+}
+
+.ant-rate-star-full {
+    svg {
+        fill: #ff9a0d;
+    }
+}
+
+.rating_num {
+    font-size: .4rem;
+    color: #ff6000;
+    margin: 0 .2rem;
+}

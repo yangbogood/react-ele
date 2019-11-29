@@ -1,0 +1,196 @@
+.msite {
+    width: 100%;
+    height: 100%;
+    .msite_nav {
+        background: #fff;
+    }
+    .am-wingblank-lg {
+        margin: 0;
+    }
+    .food_types_container {
+        padding-top: 1.95rem;
+        width: 100%;
+        display: flex;
+        height: 10.6rem;
+        flex-wrap: wrap;
+    }
+    .link_to_food {
+        width: 25%;
+        padding: .3rem 0;
+        div {
+            text-align: center;
+            img {
+                margin-bottom: .3rem;
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+            span {
+                display: block;
+                font-size: .55rem;
+                color: #666;
+            }
+        }
+    }
+    .am-wingblank.am-wingblank-lg {
+        margin: 0;
+    }
+    .shoplist_container {
+        margin-top: .4rem;
+        padding-bottom: 1.95rem;
+        border-top: .025rem solid #e4e4e4;
+        background-color: #fff;
+        header {
+            // height: 1.5rem;
+            // display: flex;
+            // align-items: center;
+            img {
+                width: .6rem;
+                height: .6rem;
+                margin-left: .6rem;
+                vertical-align: middle;
+            }
+            span {
+                margin-left: 0.4rem;
+                color: #999;
+                font: .55rem/1.6rem Microsoft YaHei;
+            }
+        }
+        &>ul {
+            &>li {
+                a {
+                    display: flex;
+                    border-bottom: .025rem solid #f1f1f1;
+                    padding: .7rem .4rem;
+                }
+            }
+            .shop_img {
+                width: 2.7rem;
+                height: 2.7rem;
+                display: block;
+                margin-right: .4rem;
+            }
+            .shop_right {
+                flex: auto;
+            }
+            .shop_detail_header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .shop_title {
+                width: 8.5rem;
+                color: #333;
+                padding-top: .01rem;
+                font: .65rem/.65rem PingFangSC-Regular;
+                font-weight: 700;
+            }
+            .shop_title::before {
+                content: "\54C1\724C";
+                display: inline-block;
+                font-size: .5rem;
+                line-height: .6rem;
+                color: #333;
+                background-color: #ffd930;
+                padding: 0 .1rem;
+                border-radius: .1rem;
+                margin-right: .2rem;
+            }
+            .shop_detail_ul {
+                display: flex;
+                transform: scale(.8);
+                margin-right: -.3rem;
+                .supports {
+                    font-size: .5rem;
+                    color: #999;
+                    border: .025rem solid #f1f1f1;
+                    padding: 0 .04rem;
+                    border-radius: .08rem;
+                    margin-left: .05rem;
+                }
+            }
+            .rating_order_num {
+                display: flex;
+                justify-content: space-between;
+                height: .6rem;
+                // margin-top: .52rem;
+                .rating_order_num_left {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    .order_section {
+                        transform: scale(.8);
+                        margin-left: -.2rem;
+                        font-size: .4rem;
+                        color: #666;
+                    }
+                    .rating_section {
+                        display: flex;
+                        align-items: center;
+                        .ant-rate {
+                            line-height: .05rem;
+                        }
+                        .ant-rate-star {
+                            margin-right: 0;
+                        }
+                        .ant-rate-star-full {
+                            svg {
+                                fill: #ff9a0d;
+                            }
+                        }
+                        .anticon svg {
+                            width: 10px;
+                        }
+                        .rating_num {
+                            font-size: .4rem;
+                            color: #ff6000;
+                            margin: 0 .2rem;
+                        }
+                    }
+                }
+                .rating_order_num_right {
+                    .delivery_style {
+                        font-size: .4rem;
+                        padding: .04rem .08rem 0;
+                        border-radius: .08rem;
+                        margin-left: .08rem;
+                        border: 1px;
+                    }
+                    .delivery_left {
+                        color: #fff;
+                        background-color: #3190e8;
+                        border: .025rem solid #3190e8;
+                    }
+                    .delivery_right {
+                        color: #3190e8;
+                        border: .025rem solid #3190e8;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fee_distance {
+    margin-top: .52rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: .5rem;
+    color: #333;
+    .fee {
+        transform: scale(.9);
+        font-size: .5rem;
+        color: #666;
+    }
+    .distance_time {
+        transform: scale(.9);
+        span {
+            color: #999;
+        }
+        .segmentation {
+            color: #999;
+        }
+        .order_time {
+            color: #3190e8;
+        }
+    }
+}

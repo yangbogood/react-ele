@@ -1,0 +1,28 @@
+.download {
+    background: #fff;
+    padding-top: 1.95rem;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font-family: Helvetica Neue, Tahoma, Arial;
+    img {
+        border-radius: 1rem;
+        margin-top: 1rem;
+    }
+    p {
+        margin-top: 0.2rem;
+        font-size: .8rem;
+        color: #666;
+        margin-bottom: 1rem;
+    }
+    .determine {
+        background-color: #4cd964;
+        font-size: .7rem;
+        color: #fff;
+        text-align: center;
+        margin: 0 .7rem;
+        line-height: 1.8rem;
+        border-radius: .2rem;
+        margin-top: .5rem;
+    }
+}

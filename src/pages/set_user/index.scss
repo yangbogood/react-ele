@@ -1,0 +1,40 @@
+.setting {
+    width: 100%;
+    padding-top: 2.5rem;
+    .setting-input {
+        padding: 0 .2rem;
+        .am-list-body {
+            border: 1px solid #ddd;
+            // border-radius: 0.2rem;
+        }
+        input {
+            color: #ddd;
+        }
+        .am-list-body::before,
+        .am-list-body::after {
+            background-color: transparent;
+        }
+        p {
+            width: 100%;
+            font-size: .4rem;
+            color: #666;
+            padding: .4rem 0 1rem;
+        }
+    }
+    .btn {
+        padding: 0 .2rem;
+        width: 100%;
+        background: none;
+        line-height: 2rem;
+        font-size: .7rem;
+        .am-button {
+            background: #3199e8;
+            color: #fff;
+        }
+        .am-button:disabled {
+            opacity: 0.6;
+            background: #3199e8;
+            color: #fff;
+        }
+    }
+}

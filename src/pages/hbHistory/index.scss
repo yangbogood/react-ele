@@ -1,0 +1,28 @@
+.hb_history {
+    margin-top: 1.95rem;
+    background-color: #f1f1f1;
+    .hongbao_list_ul {
+        padding: 1rem .5rem;
+        .hongbao_list_li {
+            background-size: .5rem .2rem;
+            margin-bottom: .5rem;
+            border-radius: .25rem;
+            position: relative;
+            background: #fff;
+        }
+        .list_item_left {
+            span {
+                color: #9999;
+            }
+        }
+        .time_left {
+            width: 3rem;
+            height: 3rem;
+            top: .6rem;
+            right: .2rem;
+            position: absolute;
+            background: url('../../assets//images/history.png') no-repeat;
+            background-size: 100%;
+        }
+    }
+}
