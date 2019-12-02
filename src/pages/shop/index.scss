@@ -75,6 +75,28 @@
             }
         }
     }
+    .tabs {
+        width: 100%;
+        display: flex;
+        .foodType {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+                padding: 5px;
+            }
+        }
+        .rating {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+                padding: 5px;
+            }
+        }
+    }
     .food-wrapper {
         height: calc( 100% - 4rem);
         .tabs {

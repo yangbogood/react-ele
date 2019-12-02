@@ -55,7 +55,7 @@ export default class Shop extends Component {
     const iScroll = new BScroll(wrapper);
     console.info(iScroll)
 
-  }
+    }
 
   render() {
     const { shopDetailedInfo, foodList,tab } = this.state

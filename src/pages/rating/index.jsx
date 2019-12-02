@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { Tag } from 'antd-mobile';
 import { Rate } from "antd";
 import './index.scss';
 import SHOP from '../../api/shop.js';
-import { imgUrl } from '../../config/envconfig.js';
-// @ts-ignore
-// import Viewer from 'viewerjs';
+import WxImageViewer from "react-wx-images-viewer";
+console.info(WxImageViewer);
 export default class Rating extends Component {
   state = {
     ratingList: [],
     tagList: [],
-    ratings: {}
+    ratings: {},
+    isOpen:false,
+    imageList:[],
+    imageIndex:-1,
   }
   getRatings = async (shopId) => {
 
@@ -28,6 +29,18 @@ export default class Rating extends Component {
     }
     let url = '/' + path.substr(0, 1) + '/' + path.substr(1, 2) + '/' + path.substr(3) + suffix;
     return 'https://fuss10.elemecdn.com' + url
+  }
+
+  openViewer=(i,index)=>{
+   const imageList=[];
+   this.state.ratingList[index].item_ratings.map((item)=>{
+      imageList.push(this.getImgPath(item.image_hash))
+   })
+   this.setState({
+       isOpen:true,
+       imageIndex:i,
+       imageList
+   })
   }
   componentDidMount() {
     const offset = this.state.ratingList.length;
@@ -51,13 +64,10 @@ export default class Rating extends Component {
         }
       )
     })
-    console.info(document.querySelector('.food_img_ul'))
-
+    
   }
   render() {
     const { ratingList, tagList, ratings } = this.state;
-    console.info(ratings)
-    console.info(ratings.overall_score)
     return (
       <section className="rating_container">
         <section>
@@ -94,9 +104,10 @@ export default class Rating extends Component {
             }
 
           </ul>
+          {this.state.isOpen&&<WxImageViewer  onClose={()=>{this.setState({isOpen:false})}} urls={this.state.imageList} index={this.state.imageIndex}></WxImageViewer>}
           <ul className="rating_list_ul">
             {
-              ratingList.map(item => {
+              ratingList.map((item,index) => {
                 return (
                   <li className="rating_list_li">
                     <img src={this.getImgPath(item.avatar)} alt="" className="user_avatar" />
@@ -115,10 +126,10 @@ export default class Rating extends Component {
                       </header>
                       <ul className="food_img_ul">
                         {
-                          item.item_ratings.map(imgInfo => {
+                          item.item_ratings.map((imgInfo ,i)=> {
                             return (
                               <li>
-                                {imgInfo.image_hash !== '' && <img src={this.getImgPath(imgInfo.image_hash)} alt="" />}
+                                <img src={this.getImgPath(imgInfo.image_hash)} alt=""  onClick={()=>{this.openViewer(i,index)}}/>
                               </li>
                             )
                           })
