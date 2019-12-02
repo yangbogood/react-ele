@@ -96,12 +96,11 @@ export default class Shop extends Component {
                     foodList.map((item, index) => {
                       return (
                         <li className={this.state.foodIndex === index ? "menu_left_li activity_menu" : "menu_left_li"} onClick={() => { this.chooseFood(index) }}>
-                          <span className="ellipsis">{item.name}</span>
+                          <span className="ellipsis" >{item.name}</span>
                         </li>
                       )
                     })
                   }
-
                 </ul>
               </section>
 

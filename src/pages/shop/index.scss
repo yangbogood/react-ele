@@ -5,6 +5,7 @@
     right: 0;
     left: 0;
     height: 100%;
+    overflow: hidden;
     .goback {
         position: fixed;
         top: 0;
@@ -98,7 +99,7 @@
         }
     }
     .food-wrapper {
-        height: calc( 100% - 4rem);
+        height: calc( 100% - 3.8rem);
         .tabs {
             width: 100%;
             display: flex;
@@ -127,8 +128,9 @@
     .food_container {
         display: flex;
         flex: 1;
-        padding-bottom: 2rem;
+        padding-bottom: 0.5rem;
         overflow: hidden;
+        height: calc( 100% - 2rem);
         .menu_container {
             display: flex;
             flex: 1;
@@ -137,6 +139,10 @@
         }
         .menu_left {
             width: 3.8rem;
+        }
+        .menu_right {
+            flex: 4;
+            overflow-y: auto;
         }
         .menu_left_li {
             padding: .7rem .3rem;
