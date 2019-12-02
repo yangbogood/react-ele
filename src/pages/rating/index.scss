@@ -72,6 +72,20 @@
             display: flex;
             padding: .6rem 0;
         }
+        .food_name_ul {
+            display: flex;
+            flex-wrap: wrap;
+            .ellipsis {
+                font-size: 0.55rem;
+                color: #999;
+                width: 2.2rem;
+                padding: .2rem;
+                border: 0.025rem solid #ebebeb;
+                border-radius: 0.15rem;
+                margin-right: .3rem;
+                margin-bottom: 4px;
+            }
+        }
         .user_avatar {
             width: 1.5rem;
             height: 1.5rem;

@@ -77,10 +77,33 @@
     }
     .food-wrapper {
         height: calc( 100% - 4rem);
+        .tabs {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            .tabs-shop {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #fff;
+                padding: .3rem 0 .6rem;
+                border-bottom: 1px solid #ebebeb;
+                span {
+                    font-size: 0.65rem;
+                    color: #666;
+                    padding: .2rem .1rem;
+                    border-bottom: 0.12rem solid #fff;
+                }
+                .tabs-active {
+                    color: #3190e8;
+                    border-color: #3190e8;
+                }
+            }
+        }
     }
     .food_container {
         display: flex;
-        -webkit-flex: 1;
         flex: 1;
         padding-bottom: 2rem;
         overflow: hidden;

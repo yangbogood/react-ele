@@ -5,7 +5,7 @@ import './index.scss';
 import SHOP from '../../api/shop.js';
 import { imgUrl } from '../../config/envconfig.js';
 // @ts-ignore
-import Viewer from 'viewerjs';
+// import Viewer from 'viewerjs';
 export default class Rating extends Component {
   state = {
     ratingList: [],
@@ -52,7 +52,7 @@ export default class Rating extends Component {
       )
     })
     console.info(document.querySelector('.food_img_ul'))
-    
+
   }
   render() {
     const { ratingList, tagList, ratings } = this.state;
@@ -118,9 +118,17 @@ export default class Rating extends Component {
                           item.item_ratings.map(imgInfo => {
                             return (
                               <li>
-                                <img src={this.getImgPath(imgInfo.image_hash)} alt="" />
+                                {imgInfo.image_hash !== '' && <img src={this.getImgPath(imgInfo.image_hash)} alt="" />}
                               </li>
                             )
+                          })
+                        }
+                      </ul>
+                      <ul className="food_name_ul">
+                        {
+                          item.item_ratings.map(info => {
+                            return <li className="ellipsis" title={info.food_name}>{info.food_name}</li>
+
                           })
                         }
                       </ul>

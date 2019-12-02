@@ -15,10 +15,7 @@ export default class Shop extends Component {
     foodList: [],
     shopDetailedInfo: {},
     foodIndex: 0,
-    tabs: [
-      { title: '商品', sub: '1' },
-      { title: '评价', sub: '2' },
-    ]
+    tab:"shop",
   }
   getFoodList = async (id) => {
     const res = await SHOP.getFoodList(id);
@@ -34,10 +31,18 @@ export default class Shop extends Component {
       shopDetailedInfo
     })
   }
+  onchangeTabs = (tab) => {
+    this.setState({
+      tab,
+    })
+  }
 
   chooseFood = (index) => {
-    console.info(index,'=====================')
     this.setState({ foodIndex: index })
+  }
+  goBack = () => {
+    console.info(this.props)
+    this.props.history.goBack()
   }
   componentDidMount() {
     this.setState({
@@ -47,15 +52,16 @@ export default class Shop extends Component {
     this.getShopDetailedInfo(this.props.match.params.id)
 
     let wrapper = document.querySelector('#wrapper_menu');
-    new BScroll(wrapper);
+    const iScroll = new BScroll(wrapper);
+    console.info(iScroll)
 
   }
 
   render() {
-    const { shopDetailedInfo, foodList } = this.state
+    const { shopDetailedInfo, foodList,tab } = this.state
     return (
       <div className="shop_container">
-        <nav className="goback"><Icon type='left' size="md"></Icon></nav>
+        <nav className="goback" ><Icon type='left' size="md" onClick={this.goBack}></Icon></nav>
         <header className="shop_detail_header">
           <div className="header_cover_img_con"><img className="header_cover_img" src={imgUrl + shopDetailedInfo.image_path}></img></div>
           <section className="description_header">
@@ -73,37 +79,37 @@ export default class Shop extends Component {
 
         </header>
         <div className="food-wrapper">
-          <Tabs tabs={this.state.tabs}
-            initialPage={0}
-            onChange={(tab, index) => { console.log('onChange', index, tab); }}
-            onTabClick={(tab, index) => {
-              this.setState({
-                tab: tab.sub
-              })
-            }}
-          >
-            <section className="food_container">
-              <section className="menu_container">
-                <section className="menu_left" id="wrapper_menu">
-                  <ul>
-                    {
-                      foodList.map((item, index) => {
-                        return (
-                          <li className={this.state.foodIndex === index ? "menu_left_li activity_menu" : "menu_left_li"} onClick={() => { this.chooseFood(index)}}>
-                            <span className="ellipsis">{item.name}</span>
-                          </li>
-                        )
-                      })
-                    }
+          <div className="tabs">
+            <div className="tabs-shop" onClick={() => { this.onchangeTabs('shop') }}>
+              <span className={tab==='shop'?'tabs-active':""}>商品</span>  
+            </div>
+            <div className="tabs-shop"  onClick={() => { this.onchangeTabs('rating') }}>
+            <span className={tab==='rating'?'tabs-active':""}>评论</span>
+            </div>
+          </div>
 
-                  </ul>
-                </section>
+          {tab==="shop"&&<section className="food_container">
+            <section className="menu_container">
+              <section className="menu_left" id="wrapper_menu">
+                <ul>
+                  {
+                    foodList.map((item, index) => {
+                      return (
+                        <li className={this.state.foodIndex === index ? "menu_left_li activity_menu" : "menu_left_li"} onClick={() => { this.chooseFood(index) }}>
+                          <span className="ellipsis">{item.name}</span>
+                        </li>
+                      )
+                    })
+                  }
 
+                </ul>
               </section>
 
             </section>
-            <Rating shopId={this.props.match.params.id}/>
-          </Tabs>
+
+          </section>}
+          {tab==='rating'&&<Rating shopId={this.props.match.params.id} />}
+ 
         </div>
       </div>
     )
