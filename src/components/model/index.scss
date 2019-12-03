@@ -1,0 +1,81 @@
+.v-model {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .model-content {
+        background: #fff;
+        position: relative;
+        border-radius: 0.4rem;
+        width: 70%;
+        header {
+            position: relative;
+            h3 {
+                font-size: 0.7rem;
+                color: #222;
+                font-weight: normal;
+                text-align: center;
+                padding: .5rem;
+                width: 80%;
+            }
+            .am-icon {
+                position: absolute;
+                right: 0.8rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        .specs_details {
+            padding: .5rem;
+            .specs_details_title {
+                font-size: 0.6rem;
+                color: #666;
+            }
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                padding: .4rem 0;
+                &>li {
+                    font-size: .6rem;
+                    padding: .3rem .5rem;
+                    border: 0.025rem solid #ddd;
+                    border-radius: .2rem;
+                    margin-right: .5rem;
+                    margin-bottom: .2rem;
+                }
+                .specs_activity {
+                    border-color: #3199e8;
+                    color: #3199e8;
+                }
+            }
+        }
+        .specs_footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 0.5rem;
+            border: 1px;
+            border-bottom-left-radius: .2rem;
+            border-bottom-right-radius: .2rem;
+            .specs_addto_cart {
+                width: 4rem;
+                height: 1.3rem;
+                background-color: #3199e8;
+                border: 1px;
+                border-radius: 0.15rem;
+                font-size: 0.6rem;
+                color: #fff;
+                text-align: center;
+                line-height: 1.3rem;
+            }
+        }
+    }
+}

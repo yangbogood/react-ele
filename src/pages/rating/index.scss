@@ -1,6 +1,7 @@
 .rating_container {
     flex: 1;
-    overflow-y: hidden;
+    overflow-y: auto;
+    height: 100%;
     flex-direction: column;
     .rating_header {
         display: flex;
@@ -37,7 +38,6 @@
                     margin-right: .5rem;
                 }
             }
-            .rating_container {}
         }
     }
     .tag_list_ul {
@@ -156,11 +156,9 @@
     margin: 0 .2rem;
 }
 
-
-
-.viewer-image-container{
+.viewer-image-container {
     width: 100%;
-    img{
+    img {
         width: 100% !important;
         height: auto;
     }

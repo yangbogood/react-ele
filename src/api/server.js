@@ -32,7 +32,6 @@ export default class Server {
                 },
             }
             axios.request(_option).then(res => {
-                console.info(res)
                 resolve(typeof res.data === 'object' ? res.data : JSON.parse(res.data))
             }, error => {
                 if (error.response) {

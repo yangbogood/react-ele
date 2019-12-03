@@ -3,7 +3,7 @@ import { Rate } from "antd";
 import './index.scss';
 import SHOP from '../../api/shop.js';
 import WxImageViewer from "react-wx-images-viewer";
-console.info(WxImageViewer);
+import BScroll from 'better-scroll'
 export default class Rating extends Component {
   state = {
     ratingList: [],
@@ -11,7 +11,8 @@ export default class Rating extends Component {
     ratings: {},
     isOpen:false,
     imageList:[],
-    imageIndex:-1,
+    imageIndex: -1,
+    iScroll:null,
   }
   getRatings = async (shopId) => {
 
@@ -42,6 +43,10 @@ export default class Rating extends Component {
        imageList
    })
   }
+
+  async loaderMoreRating(){
+
+}
   componentDidMount() {
     const offset = this.state.ratingList.length;
     const params = {
@@ -63,8 +68,17 @@ export default class Rating extends Component {
           ratings: res[2]
         }
       )
+      let wrapper = document.querySelector('.rating_container');
+      const iScroll = new BScroll(wrapper, { click: true }); 
+      this.setState({
+        iScroll 
+      })
     })
-    
+
+
+
+
+   
   }
   render() {
     const { ratingList, tagList, ratings } = this.state;
@@ -92,7 +106,7 @@ export default class Rating extends Component {
                   <span className="rating_num">{ratings.food_score.toFixed(1)}</span>
                 </div>}
               </p>
-              <p><span>送达时间</span><div>{ratings.deliver_time}</div>分钟</p>
+              <p><span>送达时间</span><span>{ratings.deliver_time}</span>分钟</p>
             </section>
           </header>
 
