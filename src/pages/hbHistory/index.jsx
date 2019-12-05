@@ -20,10 +20,8 @@ class HbHistory extends Component {
     this.setState({
       HbHistoryArr: HongbaoArr
     })
-    console.info(this.state.HbHistoryArr);
   }
   componentDidMount() {
-    console.info(this.props.userInfo);
     this.getHistoryHongbao()
   }
   render() {

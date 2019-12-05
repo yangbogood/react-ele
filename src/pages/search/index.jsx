@@ -15,7 +15,6 @@ export default class Search extends Component {
   }
 
   submit = () => {
-console.info(this.state.keys);
     let arr = this.state.keysArray;
     if (!arr.includes(this.state.keys) && this.state.keys !== "") {
       arr.push(this.state.keys);
@@ -35,7 +34,6 @@ console.info(this.state.keys);
   }
 
   clearIndexSearch = (index) => {
-    console.info('=============');
     let arr = this.state.keysArray;
     arr = arr.filter((item, i) => {
       return i !== index

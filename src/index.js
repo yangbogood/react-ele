@@ -15,19 +15,16 @@ import './style/base.scss'
 import 'antd-mobile/dist/antd-mobile.css';
 
 const render = Component => {
-        console.info(Component)
-        ReactDOM.render( <
-            Provider store = { store } >
-            <
-            AppContainer >
-            <
-            Component / >
-            <
-            /AppContainer> <
-            /Provider>, document.getElementById('root'))
-        };
+    ReactDOM.render( < Provider store = { store } >
+        <
+        AppContainer >
+        <
+        Component / >
+        <
+        /AppContainer> </Provider > , document.getElementById('root'))
+};
 
 
-        render(RouterConfig);
+render(RouterConfig);
 
-        serviceWorker.unregister();
+serviceWorker.unregister();

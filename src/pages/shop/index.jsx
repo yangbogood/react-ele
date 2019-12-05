@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Grid, Badge } from 'antd-mobile';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Model from '../../components/model/index.jsx';
 import SHOP from '../../api/shop.js';
 import { imgUrl } from '../../config/envconfig.js';
@@ -8,33 +9,69 @@ import { Tabs } from 'antd-mobile';
 import BScroll from 'better-scroll'
 import Rating from '../rating/index.jsx'
 import Loading from '../../components/loading/index.jsx';
+import { savaCartFoodList, clearCartFoodList } from '../../store/shop/shop-action'
+import store from '../../store';
 import './index.scss'
 import { Models } from 'rmc-calendar/lib/date/DataTypes';
+import CartFoodList from '../cartFoodList/index.jsx';
 
-export default class Shop extends Component {
+class Shop extends Component {
 
-  state = {
-    shopId: '',
-    foodList: [],
-    shopDetailedInfo: {},
-    foodIndex: 0,
-    tab: "shop",
-    // foodScroll: null,
-    foodScroll: {},
-    menuIndex: 0, //已选菜单索引值，默认为0\
-    shopListTop: [],
-    modelShow: false,
-    foodInfo: {},
-    totalPrice: 0, //总共价格
-    cartFoodList: [], //购物车商品列表
-    showLoading: true, //显示加载动画
-    showCartList: false,//显示购物车列表
-    menuIndexChange: true,//解决选中index时，scroll监听事件重复判断设置index的bug
+  // state = {
+  //   shopId: '',
+  //   menuList: [],
+  //   shopDetailedInfo: {},
+  //   foodIndex: 0,
+  //   showCartList: false,
+  //   tab: "shop",
+
+  //   // foodScroll: null,
+  //   foodScroll: {},
+  //   menuIndex: 0, //已选菜单索引值，默认为0\
+  //   shopListTop: [],
+  //   modelShow: false,
+  //   foodInfo: {},
+  //   totalPrice: 0, //总共价格
+  //   showLoading: true, //显示加载动画
+  //   menuIndexChange: true,//解决选中index时，scroll监听事件重复判断设置index的bug
+  //   shopCart:{}
+  // }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      shopId: '',
+      menuList: [],
+      shopDetailedInfo: {},
+      foodIndex: 0,
+      showCartList: false,
+      tab: "shop",
+      categoryNum: [],
+      // foodScroll: null,
+      foodScroll: {},
+      menuIndex: 0, //已选菜单索引值，默认为0\
+      shopListTop: [],
+      modelShow: false,
+      foodInfo: {},  //
+      cartFoodList: [],  //购物车商品列表
+      totalPrice: 0, //总共价格
+      showLoading: true, //显示加载动画
+      menuIndexChange: true,//解决选中index时，scroll监听事件重复判断设置index的bug
+      shopCart: {}
+    }
+    store.subscribe(() => {   //监听状态变化更新数据
+      this.setState({
+        shopCart: this.props.cartFoodList[this.props.match.params.id]
+      }, function () {
+        this.initCategoryNum()
+      })
+
+    })
   }
   getFoodList = async (id) => {
     const res = await SHOP.getFoodList(id);
     this.setState({
-      foodList: res
+      menuList: res
     })
     let wrapper = document.querySelector('#wrapper_menu');
     const foodScroll = new BScroll(wrapper, {
@@ -43,6 +80,7 @@ export default class Shop extends Component {
       bounce: false,
       swipeTime: 2000,
       click: true,
+
     });
     this.getFoodListHeight()
   }
@@ -65,7 +103,6 @@ export default class Shop extends Component {
     this.setState({
       menuIndexChange: false
     })
-    console.info(this.state.shopListTop)
     this.state.foodScroll.scrollTo(0, -this.state.shopListTop[index], 400);
     this.state.foodScroll.on('scrollEnd', () => {
       this.setState({
@@ -75,7 +112,6 @@ export default class Shop extends Component {
     this.setState({ foodIndex: index })
   }
   goBack = () => {
-    console.info(this.props)
     this.props.history.goBack()
   }
   componentDidMount() {
@@ -134,6 +170,19 @@ export default class Shop extends Component {
     }
   }
 
+  clearCartList = () => {
+    this.props.clearCartFoodList()
+    this.setState({
+      showCartList: false
+    })
+  }
+
+
+  addFoodCar = (food) => {
+    console.info(food, '=================')
+    this.props.savaCartFoodList({ ...food, shopid: this.props.match.params.id })
+  }
+
   listenScroll = (element) => {
     const foodScroll = new BScroll(element, {
       probeType: 3,
@@ -150,14 +199,14 @@ export default class Shop extends Component {
       });
       const wrapper_menu = document.querySelector('#wrapper_menu');
       const wrapMenuHeight = wrapper_menu.clientHeight;
-        this.state.foodScroll.on('scroll', (pos) => {
+      this.state.foodScroll.on('scroll', (pos) => {
         if (!wrapper_menu) {
           return
         }
         this.state.shopListTop.forEach((item, index) => {
           if (this.state.menuIndexChange && Math.abs(Math.round(pos.y)) >= item) {
             this.setState({
-              foodIndex:index
+              foodIndex: index
             })
             const menuList = wrapper_menu.querySelectorAll('.activity_menu');
             const el = menuList[0];
@@ -170,31 +219,82 @@ export default class Shop extends Component {
 
   }
 
+
+  initCategoryNum = () => {
+    let newArr = [];
+    let cartFoodNum = 0;
+    let totalPrice = 0;
+    this.setState({
+      totalPrice: 0
+    })
+    const cartFoodList = [];
+    this.state.menuList.forEach((item, index) => {
+      if (this.state.shopCart && this.state.shopCart[item.foods[0].category_id]) {
+        let num = 0;
+        Object.keys(this.state.shopCart[item.foods[0].category_id]).forEach(itemid => {
+          Object.keys(this.state.shopCart[item.foods[0].category_id][itemid]).forEach(foodid => {
+            let foodItem = this.state.shopCart[item.foods[0].category_id][itemid][foodid];
+            num += foodItem.num;
+            if (item.type == 1) {
+              totalPrice += foodItem.num * foodItem.price;
+              if (foodItem.num > 0) {
+                cartFoodList[cartFoodNum] = {};
+                cartFoodList[cartFoodNum].category_id = item.foods[0].category_id;
+                cartFoodList[cartFoodNum].item_id = itemid;
+                cartFoodList[cartFoodNum].food_id = foodid;
+                cartFoodList[cartFoodNum].num = foodItem.num;
+                cartFoodList[cartFoodNum].price = foodItem.price;
+                cartFoodList[cartFoodNum].name = foodItem.name;
+                cartFoodList[cartFoodNum].specs = foodItem.specs;
+                cartFoodNum++;
+              }
+            }
+          })
+        })
+        newArr[index] = num;
+      } else {
+        newArr[index] = 0;
+      }
+
+
+    })
+    console.info(cartFoodList)
+    this.setState({
+      totalPrice: totalPrice.toFixed(2),
+      categoryNum: [...newArr],
+      cartFoodList,
+    })
+
+  }
+
+  foodNum = (foods) => {
+    let category_id = foods.category_id;
+    let item_id = foods.item_id;
+    if (this.state.shopCart && this.state.shopCart[category_id] && this.state.shopCart[category_id][item_id]) {
+      let num = 0;
+      Object.values(this.state.shopCart[category_id][item_id]).forEach((item, index) => {
+        num += item.num;
+      })
+      return num;
+    } else {
+      return 0;
+    }
+  }
+
+  totalNum = () => {
+    let num = 0;
+    this.state.categoryNum.forEach(item => {
+      num += item
+    })
+    return num
+  }
+
   render() {
-    const { shopDetailedInfo, foodList, tab, modelShow, foodInfo, showLoading } = this.state
-    // if (!showLoading) {
-    //   this.getFoodListHeight()
-    // }
+    const { shopDetailedInfo, menuList, tab, modelShow, foodInfo, showLoading } = this.state;
+
     return (
       <div className="shop_container">
-        <section className="buy_cart_container">
-
-          <section className="cart_icon_num">
-
-            <div className="cart_icon_container">
-              <Badge text={'3'}>
-                <div className="cart_icon"></div>
-              </Badge>
-            </div>
-            <div className="cart_num">
-              <div>¥ 10040.00</div>
-              <div>配送费¥5</div>
-            </div>
-
-          </section>
-          <section className="gotopay">去结算</section>
-        </section>
-        {modelShow && <Model foodInfo={foodInfo} close={this.closeModel.bind(this)}></Model>}
+        {modelShow && <Model foodInfo={foodInfo} close={this.closeModel.bind(this)} addFoodCar={this.addFoodCar}></Model>}
         <nav className="goback" ><Icon type='left' size="md" onClick={this.goBack}></Icon></nav>
         {Object.keys(shopDetailedInfo).length !== 0 && <header className="shop_detail_header">
           <div className="header_cover_img_con"><img className="header_cover_img" src={imgUrl + shopDetailedInfo.image_path}></img></div>
@@ -213,6 +313,7 @@ export default class Shop extends Component {
 
         </header>}
         <div className="food-wrapper">
+
           <div className="tabs">
             <div className="tabs-shop" onClick={() => { this.onchangeTabs('shop') }}>
               <span className={tab === 'shop' ? 'tabs-active' : ""}>商品</span>
@@ -223,14 +324,45 @@ export default class Shop extends Component {
           </div>
 
           {tab === "shop" && <section className="food_container">
+            {this.state.showCartList && <CartFoodList
+              visible={this.state.showCartList}
+              cartFoodList={this.state.cartFoodList}
+              onClose={() => { this.setState({ showCartList: !this.state.showCartList }) }}
+              clearCartList={this.clearCartList}></CartFoodList>}
+            <section className="buy_cart_container">
+              <section className="cart_icon_num">
+                <div className="cart_icon_container">
+                  <Badge text={this.totalNum()}>
+                    <div className="cart_icon" onClick={() => {
+                      if (this.props.cartFoodList.length !== 0) {
+                        this.setState({
+                          showCartList: !this.state.showCartList
+                        })
+                      }
+                    }}></div>
+                  </Badge>
+                </div>
+                <div className="cart_num">
+                  <div>¥ {this.state.totalPrice}</div>
+                  <div>配送费¥5</div>
+                </div>
+
+              </section>
+              <section className="gotopay">去结算</section>
+            </section>
             <section className="menu_container">
               <section className="menu_left" id="wrapper_menu" ref="wrapper_menu">
                 <ul>
                   {
-                    foodList.map((item, index) => {
+                    (menuList || []).map((item, index) => {
                       return (
-                        <li className={this.state.foodIndex === index ? "menu_left_li activity_menu" : "menu_left_li"} onClick={() => { this.chooseFood(index) }}>
-                          <span className="ellipsis" >{item.name}</span>
+                        <li
+                          className={this.state.foodIndex === index ? "menu_left_li activity_menu" : "menu_left_li"}
+                          onClick={() => { this.chooseFood(index) }}
+                        >
+                          <Badge text={this.state.categoryNum[index]} className="menu_left_li_num">
+                            <span className="ellipsis" >{item.name}</span>
+                          </Badge>
                         </li>
                       )
                     })
@@ -239,7 +371,7 @@ export default class Shop extends Component {
               </section>
               <section className="menu_right" ref="menu_right">
                 <ul>
-                  {foodList.map(item => {
+                  {menuList.map(item => {
                     return (
                       <li>
                         <header className="menu_detail_header">
@@ -280,12 +412,22 @@ export default class Shop extends Component {
                                   <section className="cart_module">
                                     <section className="choose_specification">
                                       <section className="choose_icon_container">
-                                        <span className="show_chooselist" onClick={() => { this.chooseFoodType(foodInfo) }}>选规格</span>
+                                        {this.foodNum(foodInfo) >= 1 && <div className="cart_button"></div>}
+                                        {this.foodNum(foodInfo) && <span className="cart_num">{this.foodNum(foodInfo)}</span>}
+                                        {foodInfo.specfoods.length === 1 &&
+                                          <div className="cart-add"
+                                            onClick={() => { this.addFoodCar({ ...foodInfo.specfoods[0], category_id: foodInfo.category_id }) }} >
+                                          </div>}
+
+                                        {foodInfo.specfoods.length > 1 &&
+                                          <span className="show_chooselist"
+                                            onClick={() => { this.chooseFoodType({ ...foodInfo, category_id: foodInfo.category_id }) }}>
+                                            选规格</span>
+                                        }
                                       </section>
                                     </section>
                                   </section>
                                 </footer>
-
                               </section>
                             )
                           })
@@ -309,3 +451,21 @@ export default class Shop extends Component {
   }
 
 }
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    cartFoodList: state.cartFoodList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    savaCartFoodList: (menuList) => dispatch(savaCartFoodList(menuList)),
+    clearCartFoodList: () => dispatch(clearCartFoodList())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop)

@@ -51,7 +51,6 @@ export default class setUser extends Component {
             <InputItem placeholder={'请修改' + this.state.headerTitle} value={this.state.name} onChange={
               (value) => {
                 this.setState({ name: value })
-                console.info(this.state.name);
               }}></InputItem>
           </List>
           <p>用户名只能修改一次（5-24字符之间）</p>

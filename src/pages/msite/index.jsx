@@ -66,7 +66,6 @@ export default class Msite extends Component {
   }
   getShopList = async () => {
     const result = await API.getShopList({ latitude: 31.22967, longitude: 121.4762 })
-    console.info(result);
     this.setState({
       shopList: result
     })

@@ -32,7 +32,6 @@ class Balance extends Component {
     this.setState({
       hongbaoArr: res
     })
-    console.info(this.state.hongbaoArr);
   }
 
   componentDidMount() {

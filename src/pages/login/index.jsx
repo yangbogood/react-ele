@@ -29,7 +29,6 @@ class Login extends Component {
     }
   }
   onChange(value) {
-    console.info(value)
     if (value.replace(/\s/g, '').length < 11) {
       this.setState({
         hasError: true,
@@ -66,7 +65,6 @@ class Login extends Component {
       captcha_code: this.state.code
     }
     let userInfo = await API.accountLogin({ ...sendObj });
-    console.info(userInfo.tip)
     if (userInfo.tip) {
       Toast.info(userInfo.response.message, 2, null, false);
       if (!this.state.loginWay) this.getCaptchaCode();

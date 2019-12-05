@@ -8,7 +8,6 @@ import { modifyUserInfo,saveUserInfo } from '../../store/action'
 import QueueAnim from 'rc-queue-anim'
 import API from '../../api/api.js';
 import './index.scss'
-import { userInfo } from 'os';
 const alert = Modal.alert;
 
 const defaultImage = require('../../assets/images/default.jpg');

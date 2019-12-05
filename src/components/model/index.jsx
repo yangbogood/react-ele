@@ -18,6 +18,12 @@ class Model extends Component {
   closeModel(e) {
     this.props.close()
   }
+
+  addCarFood = () => {
+    const foodInfo = this.props.foodInfo.specfoods[this.state.index];
+    this.props.addFoodCar({ ...foodInfo ,category_id:this.props.foodInfo.category_id})
+    this.props.close()
+  }
   render() {
     const { foodInfo } = this.state
     return (
@@ -43,7 +49,7 @@ class Model extends Component {
                 <span >￥</span>
                 <span>20</span>
               </div>
-              <div className="specs_addto_cart" onClick={(e) => { this.closeModel(e) }}>
+              <div className="specs_addto_cart" onClick={this.addCarFood}>
                 加入购物车
          </div>
 

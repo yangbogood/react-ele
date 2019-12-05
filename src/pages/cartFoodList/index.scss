@@ -1,0 +1,93 @@
+.cart_food_list {
+    .cart-content {
+        padding-bottom: 2.5rem;
+    }
+    header {
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .3rem .6rem;
+        background-color: #eceff1;
+        h4 {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        div {
+            display: flex;
+            align-items: center;
+            img {
+                width: 0.6rem;
+                height: 0.6rem;
+                vertical-align: middle;
+                margin-right: 0.2rem;
+            }
+            span {
+                font-size: 0.6rem;
+                color: #666;
+            }
+        }
+    }
+    .cart_food_details {
+        background-color: #fff;
+        max-height: 20rem;
+        overflow-y: auto;
+        .cart_food_li {
+            display: flex;
+            justify-content: space-between;
+            padding: .6rem .5rem;
+            border-bottom: 1px solid #eee;
+            .cart_list_num {
+                width: 55%;
+                p {
+                    text-align: left;
+                    line-height: 1;
+                }
+                p:nth-child(1) {
+                    font-size: 0.7rem;
+                    color: #666;
+                    font-weight: bold;
+                    margin-bottom: 0.2rem;
+                }
+                p:nth-child(2) {
+                    font-size: 0.4rem;
+                    color: #666;
+                }
+            }
+            .cart_list_price {
+                font-size: 0;
+                display: flex;
+                align-items: center;
+                span:nth-child(1) {
+                    font-size: 0.6rem;
+                    color: #f60;
+                    font-family: Helvetica Neue, Tahoma;
+                }
+                span:nth-child(2) {
+                    font-size: 0.7rem;
+                    color: #f60;
+                    font-family: Helvetica Neue, Tahoma;
+                    font-weight: bold;
+                }
+            }
+            .cart_list_control {
+                display: flex;
+                align-items: center;
+                img {
+                    width: 0.9rem;
+                    height: 0.9rem;
+                }
+                span {
+                    font-size: 0.65rem;
+                    color: #666;
+                    min-width: 1rem;
+                    text-align: center;
+                    font-family: Helvetica Neue, Tahoma;
+                }
+            }
+        }
+        .cart_food_li:last-child {
+            border-bottom: none;
+        }
+    }
+}
