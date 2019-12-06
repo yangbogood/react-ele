@@ -1,0 +1,2 @@
+(window["webpackJsonpele-app"]=window["webpackJsonpele-app"]||[]).push([[23],{403:function(e,n,t){"use strict";t.r(n),t.d(n,"default",function(){return s});var a=t(9),c=t(10),r=t(12),u=t(11),i=t(13),p=t(0),l=t.n(p),o=t(85),s=function(e){function n(){return Object(a.a)(this,n),Object(r.a)(this,Object(u.a)(n).apply(this,arguments))}return Object(i.a)(n,e),Object(c.a)(n,[{key:"render",value:function(){return l.a.createElement("div",null,l.a.createElement(o.a,null))}}]),n}(p.Component)}}]);
+//# sourceMappingURL=23.c15e25a0.chunk.js.map
