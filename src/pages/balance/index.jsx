@@ -123,7 +123,7 @@ class Balance extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfoData.userInfo
   }
 }
 

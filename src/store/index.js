@@ -1,8 +1,9 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import userReducer from './reducer';
+import * as userInfoData from './userInfo/reducer';
+import * as shopData from './shop/reducer';
 let store = createStore(
-    userReducer,
+    combineReducers({...userInfoData, ...shopData }),
     applyMiddleware(thunk)
 )
 

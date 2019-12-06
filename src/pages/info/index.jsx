@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Header from '../../components/header';
 import { Modal, Toast } from 'antd-mobile';
 import { imgUrl } from '../../config/envconfig';
-import { modifyUserInfo,saveUserInfo } from '../../store/action'
+import { modifyUserInfo,saveUserInfo } from '../../store/userInfo/action'
 import QueueAnim from 'rc-queue-anim'
 import API from '../../api/api.js';
 import './index.scss'
@@ -136,7 +136,7 @@ class Info extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfoData.userInfo
   }
 }
 

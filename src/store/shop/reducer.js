@@ -1,41 +1,13 @@
-import * as user from './action-type'
-import * as shop from './shop/action-type'
-import { getStore } from '../utils/commons'
-import { Cipher } from 'crypto';
-let userInfo = getStore('userInfo') || {};
-if (typeof userInfo === 'string') {
-    userInfo = JSON.parse(userInfo);
-}
+import * as shop from './action-type';
 
 
 let defaultState = {
-    addressList: [], // 地址列表
-    addressName: '', // 选中的地址
-    temMessage: '', //临时姓名
-    hasAddressList: [], // 已有的地址
-    operate: 'edit',
-    userInfo: userInfo,
-    geohash: [],
     cartFoodList: {}
-
 }
 
 // 用户消息
-export default (state = defaultState, action = {}) => {
+export const shopData = (state = defaultState, action = {}) => {
     switch (action.type) {
-        case user.SAVE_USERINFO:
-            return {
-                ...state,
-                userInfo: action.userInfo
-            }
-        case user.SAVE_ATTRINFO:
-            return {...state,
-                ... {
-                    [action.datatype]: action.value
-                }
-            };
-        case user.MODIFY_USERINFO:
-            return {...state, userInfo: {...state.userInfo, [action.key]: action.value } };
         case shop.ADD_TO_CART:
             let cart = state.cartFoodList;
             let shops = cart[action.value.shopid] = (cart[action.value.shopid] || {});

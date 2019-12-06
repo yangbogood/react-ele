@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from './../../components/header/index.jsx'
 import { List, InputItem, Toast, Switch, Button } from 'antd-mobile';
 import { getImgPath, setStore } from '../../utils/commons'
-import {saveUserInfo} from '../../store/action.js'
+import {saveUserInfo} from '../../store/userInfo/action.js'
 import { createForm } from 'rc-form';
 import API from '../../api/api'
 import './index.scss'

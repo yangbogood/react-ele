@@ -62,7 +62,7 @@ export default class Search extends Component {
         <Header title={'搜索'} goBack={this.goBack}></Header>
         <section className="search_form" >
           <div>
-            <input type="text" placeholder="请输入商家或美食名称" class="search_input" value={this.state.keys} onChange={(e) => {
+            <input type="text" placeholder="请输入商家或美食名称" className="search_input" value={this.state.keys} onChange={(e) => {
               this.setState({
                 keys: e.target.value
               })

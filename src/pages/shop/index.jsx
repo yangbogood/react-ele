@@ -179,7 +179,6 @@ class Shop extends Component {
 
 
   addFoodCar = (food) => {
-    console.info(food, '=================')
     this.props.savaCartFoodList({ ...food, shopid: this.props.match.params.id })
   }
 
@@ -258,7 +257,7 @@ class Shop extends Component {
 
 
     })
-    console.info(cartFoodList)
+
     this.setState({
       totalPrice: totalPrice.toFixed(2),
       categoryNum: [...newArr],
@@ -456,7 +455,7 @@ class Shop extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cartFoodList: state.cartFoodList
+    cartFoodList: state.shopData.cartFoodList
   }
 }
 

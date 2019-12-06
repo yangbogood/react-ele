@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { saveUserInfo } from '../../store/action.js'
+import { saveUserInfo } from '../../store/userInfo/action.js'
 import { getStore } from '../../utils/commons'
 import API from '../../api/api'
 import Footer from './../../components/footer/index.jsx'
@@ -149,7 +149,7 @@ const header_imgae=require('../../assets/images/header-image.jpg')
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfoData.userInfo
   }
 }
 

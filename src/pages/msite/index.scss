@@ -17,18 +17,16 @@
     .link_to_food {
         width: 25%;
         padding: .3rem 0;
-        div {
-            text-align: center;
-            img {
-                margin-bottom: .3rem;
-                width: 1.8rem;
-                height: 1.8rem;
-            }
-            span {
-                display: block;
-                font-size: .55rem;
-                color: #666;
-            }
+        text-align: center;
+        img {
+            margin-bottom: .3rem;
+            width: 1.8rem;
+            height: 1.8rem;
+        }
+        span {
+            display: block;
+            font-size: .55rem;
+            color: #666;
         }
     }
     .am-wingblank.am-wingblank-lg {

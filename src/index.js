@@ -13,7 +13,6 @@ import * as serviceWorker from './serviceWorker';
 import './config/rem';
 import './style/base.scss'
 import 'antd-mobile/dist/antd-mobile.css';
-
 const render = Component => {
     ReactDOM.render( < Provider store = { store } >
         <
