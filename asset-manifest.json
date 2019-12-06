@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react-ele/static/css/main.362299d2.chunk.css",
+    "main.js": "/react-ele/static/js/main.079501bd.chunk.js",
+    "main.js.map": "/react-ele/static/js/main.079501bd.chunk.js.map",
+    "runtime~main.js": "/react-ele/static/js/runtime~main.42edcc7d.js",
+    "runtime~main.js.map": "/react-ele/static/js/runtime~main.42edcc7d.js.map",
+    "static/css/2.4ce301a3.chunk.css": "/react-ele/static/css/2.4ce301a3.chunk.css",
+    "static/js/2.ec7ddf7c.chunk.js": "/react-ele/static/js/2.ec7ddf7c.chunk.js",
+    "static/js/2.ec7ddf7c.chunk.js.map": "/react-ele/static/js/2.ec7ddf7c.chunk.js.map",
+    "index.html": "/react-ele/index.html",
+    "precache-manifest.93ad0dcc39c5aaf82104b388ce7e6303.js": "/react-ele/precache-manifest.93ad0dcc39c5aaf82104b388ce7e6303.js",
+    "service-worker.js": "/react-ele/service-worker.js",
+    "static/css/2.4ce301a3.chunk.css.map": "/react-ele/static/css/2.4ce301a3.chunk.css.map",
+    "static/css/main.362299d2.chunk.css.map": "/react-ele/static/css/main.362299d2.chunk.css.map",
+    "static/media/header-image.jpg": "/react-ele/static/media/header-image.328c50c9.jpg",
+    "static/media/index.scss": "/react-ele/static/media/iconfont.c654f83b.svg"
+  }
+}
