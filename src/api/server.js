@@ -16,7 +16,7 @@ import { baseUrl } from '../config/envconfig'
  */
 export default class Server {
     axios(method, url, data, params) {
-        const baseURL = 'http://elm.cangdu.org' + url;
+        const baseURL = 'https://elm.cangdu.org' + url;
         return new Promise((resolve, reject) => {
             let _option = {
                 method,

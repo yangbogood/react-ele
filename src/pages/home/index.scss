@@ -1,0 +1,73 @@
+.home {
+    .city_nav {
+        padding-top: 2.35rem;
+        border-top: 1px solid #e4e4e4;
+        background-color: #fff;
+        margin-bottom: .4rem;
+        a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 1.8rem;
+            padding: 0 .45rem;
+            border-top: 1px solid #e4e4e4;
+            border-bottom: 2px solid #e4e4e4;
+            font: .75rem/1.8rem Microsoft YaHei;
+        }
+        .city_tip {
+            display: flex;
+            justify-content: space-between;
+            line-height: 1.45rem;
+            padding: 0 .45rem;
+            span:first-of-type {
+                font-size: .55rem;
+                color: #666;
+            }
+            span:nth-of-type(2) {
+                font-weight: 900;
+                font-size: .475rem;
+                color: #9f9f9f;
+            }
+        }
+    }
+    .letter_classify_li,
+    .hot_city_container {
+        background-color: #fff;
+        margin-bottom: .4rem;
+        .city_title {
+            color: #666;
+            font-weight: 400;
+            text-indent: .45rem;
+            border-top: 2px solid #e4e4e4;
+            border-bottom: 1px solid #e4e4e4;
+            font: .55rem/1.45rem Helvetica Neue;
+        }
+        .citylistul {
+            background-color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            li {
+                text-align: center;
+                color: #3190e8;
+                border-bottom: .025rem solid #e4e4e4;
+                border-right: .025rem solid #e4e4e4;
+                width: 25%;
+                height: 1.75rem;
+                font: .6rem/1.75rem Microsoft YaHei;
+            }
+        }
+        .group_city_container {}
+    }
+    .letter_classify {
+        .citylistul {
+            li {
+                box-sizing: border-box;
+                padding: 0 4px;
+                color: #666;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}

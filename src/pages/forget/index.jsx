@@ -12,6 +12,7 @@ import { async } from 'q';
 
 
 class Forget extends Component {
+ cu
   state = {
     title: '密码登录',
     hasError: false,
@@ -70,11 +71,13 @@ class Forget extends Component {
         hasAlert: !this.state.hasAlert
       })
       this.state.alertText = "请输入账号"
+      return 
     } else if (this.state.oldPassword === '') {
       this.setState({
         hasAlert: !this.state.hasAlert
       })
       this.state.alertText = "请输入密码"
+    return 
     }
     this.changepassword()
   }
@@ -114,7 +117,7 @@ class Forget extends Component {
   }
   render() {
     return (
-      <div className="login-container">
+      <div className="forget-container">
         {this.state.hasAlert && <Alert logout={() => { return false }} closeTip={this.closeTip.bind(this)} alertText={this.state.alertText} />}
         <Header title={this.state.title} goBack={this.goBack.bind(this)} />
         <div className="login-form">
@@ -201,7 +204,7 @@ class Forget extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfoData.userInfo
   }
 }
 

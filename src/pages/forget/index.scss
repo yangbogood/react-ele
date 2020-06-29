@@ -1,0 +1,39 @@
+.forget-container {
+    .am-list {
+        height: 2rem;
+    }
+    .am-list-body {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .img-change-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 3.5rem;
+                height: 1.5rem;
+                margin-right: .2rem;
+            }
+            .change_img {
+                display: flex;
+                flex-wrap: wrap;
+                width: 2rem;
+                justify-content: center;
+                p:last-child {
+                    color: #3b95e9;
+                    margin-top: .2rem;
+                }
+            }
+        }
+    }
+    .login-button {
+        margin: 0.5rem .5rem 1rem;
+        font-size: .7rem;
+        color: #fff;
+        background-color: #4cd964;
+        border: 1px;
+        border-radius: .15rem;
+        text-align: center;
+    }
+}
